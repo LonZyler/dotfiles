@@ -127,7 +127,7 @@ fi
 
 # aliases
 alias zyhonara="conda activate /mnt/01D2AF41DDBE7FB0/ZyLab/zyhonara/env && cd /mnt/01D2AF41DDBE7FB0/ZyLab/zyhonara/"
-alias dotfile='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 
 #force_color_prompt=yes

@@ -21,5 +21,6 @@
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"Theme - Flatland"
-	]
+	],
+	"ignore_vcs_packages": true
 }

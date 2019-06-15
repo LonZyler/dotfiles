@@ -127,8 +127,9 @@ fi
 
 # aliases
 alias zyhonara="conda activate /mnt/01D2AF41DDBE7FB0/ZyLab/zyhonara/env && cd /mnt/01D2AF41DDBE7FB0/ZyLab/zyhonara/"
+alias zybot="source /mnt/01D2AF41DDBE7FB0/ZyLab/zybot/env/bin/activate && cd /mnt/01D2AF41DDBE7FB0/ZyLab/zybot"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-
+alias ov='sudo openvpn --config /home/lz/ncastiglia.tblk/ncastiglia.ovpn'
 
 #force_color_prompt=yes
 #export PATH=/usr/local/cuda-10.0/bin:$PATH

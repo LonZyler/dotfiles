@@ -36,6 +36,10 @@ set $base0F #fcc09e
 # Transparency
 set $alpha 40
 
+# Monitors
+set $monitor_primary HDMI-0
+set $monitor_secondary HDMI-1
+
 # ====================================
 #                 End
 # ====================================
@@ -122,8 +126,12 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# ====================================
+#          Workspaces Setup
+# ====================================
+# ------------------------------------
+#       	  Main Ones
+# ------------------------------------
 set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
@@ -135,6 +143,17 @@ set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10: "
+
+workspace $ws1 output $monitor_primary
+workspace $ws2 output $monitor_primary
+workspace $ws3 output $monitor_primary
+workspace $ws4 output $monitor_primary
+workspace $ws5 output $monitor_primary
+workspace $ws6 output $monitor_primary
+workspace $ws7 output $monitor_primary
+workspace $ws8 output $monitor_primary
+workspace $ws9 output $monitor_primary
+workspace $ws10 output $monitor_primary
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -159,6 +178,57 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+# ------------------------------------
+#       	  Aux Ones
+# ------------------------------------
+set $ws1_aux "1:  - aux"
+set $ws2_aux "2:  - aux"
+set $ws3_aux "3:  - aux"
+set $ws4_aux "4:  - aux"
+set $ws5_aux "5:  - aux"
+set $ws9_aux "9:  - aux"
+set $ws6_aux "6:  - aux"
+set $ws7_aux "7:  - aux"
+set $ws8_aux "8:  - aux"
+set $ws9_aux "9:  - aux"
+set $ws10_aux "10:  - aux"
+
+workspace $ws1_aux output $monitor_secondary
+workspace $ws2_aux output $monitor_secondary
+workspace $ws3_aux output $monitor_secondary
+workspace $ws4_aux output $monitor_secondary
+workspace $ws5_aux output $monitor_secondary
+workspace $ws6_aux output $monitor_secondary
+workspace $ws7_aux output $monitor_secondary
+workspace $ws8_aux output $monitor_secondary
+workspace $ws9_aux output $monitor_secondary
+workspace $ws10_aux output $monitor_secondary
+
+# switch to workspace
+bindsym $mod+Ctrl+1 workspace $ws1_aux
+bindsym $mod+Ctrl+2 workspace $ws2_aux
+bindsym $mod+Ctrl+3 workspace $ws3_aux
+bindsym $mod+Ctrl+4 workspace $ws4_aux
+bindsym $mod+Ctrl+5 workspace $ws5_aux
+bindsym $mod+Ctrl+6 workspace $ws6_aux
+bindsym $mod+Ctrl+7 workspace $ws7_aux
+bindsym $mod+Ctrl+8 workspace $ws8_aux
+bindsym $mod+Ctrl+9 workspace $ws9_aux
+bindsym $mod+Ctrl+0 workspace $ws10_aux
+
+# move focused container to workspace
+bindsym $mod+Alt+1 move container to workspace $ws1_aux
+bindsym $mod+Alt+2 move container to workspace $ws2_aux
+bindsym $mod+Alt+3 move container to workspace $ws3_aux
+bindsym $mod+Alt+4 move container to workspace $ws4_aux
+bindsym $mod+Alt+5 move container to workspace $ws5_aux
+bindsym $mod+Alt+6 move container to workspace $ws6_aux
+bindsym $mod+Alt+7 move container to workspace $ws7_aux
+bindsym $mod+Alt+8 move container to workspace $ws8_aux
+bindsym $mod+Alt+9 move container to workspace $ws9_aux
+bindsym $mod+Alt+0 move container to workspace $ws10_aux
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -267,10 +337,30 @@ bindsym $mod+F9 exec --no-startup-id nemo; workspace $ws9
 bindsym $mod+F10 exec --no-startup-id spotify; workspace $ws10
 
 # ------------------------------------
+#         Monitor management
+# ------------------------------------
+bindsym $mod+O mode "$mode_monitor"
+
+set $mode_monitor Monitor Setup (1) Single, (2) Dual
+mode "$mode_monitor" {
+    bindsym 1 exec --no-startup-id ~/.screenlayout/single.sh, mode "default"
+    bindsym 2 exec --no-startup-id ~/.screenlayout/dual.sh, mode "default"
+    
+    bindsym u exec --no-startup-id ~/.config/i3/i3-scripts/i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/i3-scripts/i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/i3-scripts/i3exit.sh reboot, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/i3-scripts/i3exit.sh shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# ------------------------------------
 #          Sound management
 # ------------------------------------
-bindsym KP_Prior exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym KP_Right exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym KP_Prior exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym KP_Right exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
 bindsym KP_Up exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Music playback control
@@ -299,9 +389,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# ------------------------------------
-#         System management
-# ------------------------------------
 bindsym $mod+b bar mode toggle
 
 # ====================================

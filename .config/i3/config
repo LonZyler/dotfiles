@@ -359,8 +359,8 @@ mode "$mode_monitor" {
 # ------------------------------------
 #          Sound management
 # ------------------------------------
-bindsym KP_Prior exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym KP_Right exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym KP_Prior exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym KP_Right exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym KP_Up exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Music playback control
@@ -411,4 +411,5 @@ exec_always --no-startup-id "setxkbmap -layout us,es -option 'grp:shifts_toggle'
 # ------------------------------------
 # Nvidia Fan Controller
 exec --no-startup-id "$HOME/Nvidia-Fan-Curve/FanCurveScript.sh"
-exec xrandr --output HDMI-0 --primary
+# Initial Monitor setup
+exec --no-startup-id ~/.screenlayout/single.sh
